@@ -1,4 +1,5 @@
 import Models.Jogador;
+import Models.Jogo;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -6,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Servidor {
+    private static Jogo jogo;
+
     public static void main(String[] args) throws Exception {
         ServerSocket socket = new ServerSocket(6789);
 
@@ -29,6 +32,30 @@ public class Servidor {
 
         jogador1.setAdversario(jogador2);
         jogador2.setAdversario(jogador1);
+
+        jogo = new Jogo(jogador1, jogador2);
+
+        int partida = 0;
+
+        while (!jogo.jogoAcabou()) {
+            partida++;
+            System.out.println("Tudo pronto!");
+            System.out.println(" ");
+            System.out.println("O " + jogador1.getNome() + " possui " + jogador1.getPontos() + " pontos.");
+            System.out.println("O " + jogador2.getNome() + " possui " + jogador2.getPontos() + " pontos.");
+
+            jogo.novaMao();
+
+            while (!jogo.partidaAcabou()) {
+                jogo.novaRodada();
+
+            }
+        }
+
+        paraJogador1.reset();
+        paraJogador1.writeObject("FIM");
+        paraJogador2.reset();
+        paraJogador2.writeObject("FIM");
 
         socketJogador1.close();
         socketJogador2.close();

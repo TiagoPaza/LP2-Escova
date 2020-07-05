@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Jogo {
 	private final int pontosVitoria = 6;
@@ -50,5 +51,52 @@ public class Jogo {
 
 	public void setMesa(ArrayList<Carta> mesa) {
 		this.mesa = mesa;
+	}
+
+	public void novaMao() {
+		this.mesa = new ArrayList<Carta>();
+		this.baralho = new Baralho();
+		this.embaralhaCartas();
+		this.distribuiCartasMesa();
+	}
+
+	public void novaRodada() {
+		this.distribuiCartasJogadores();
+	}
+
+	private void embaralhaCartas() {
+		Collections.shuffle(baralho.getCartas());
+	}
+
+	public void distribuiCartasJogadores() {
+		int distribuicoes = 3;
+
+		if (baralho.getCartas().size() < 6)
+			distribuicoes = baralho.getCartas().size() / 2;
+
+		for (int i = 1; i <= distribuicoes; i++) {
+			jogador1.getMao().add(baralho.getCartas().remove(baralho.getCartas().size() - 1));
+			jogador2.getMao().add(baralho.getCartas().remove(baralho.getCartas().size() - 1));
+		}
+	}
+
+	public void distribuiCartasMesa() {
+		int distribuicoes = 4;
+
+		if (baralho.getCartas().size() < 4) {
+			distribuicoes = baralho.getCartas().size();
+		}
+
+		for (int i = 0; i < distribuicoes; i++) {
+			this.getMesa().add(baralho.getCartas().remove(baralho.getCartas().size() - 1));
+		}
+	}
+
+	public boolean jogoAcabou() {
+		return jogador1.getPontos() >= getPontosVitoria() || jogador2.getPontos() >= getPontosVitoria();
+	}
+
+	public boolean partidaAcabou() {
+		return this.getBaralho().getCartas().size() == 0;
 	}
 }

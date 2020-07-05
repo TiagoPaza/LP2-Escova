@@ -31,14 +31,14 @@ public class Jogador1 {
 
         while (doServidor.readObject().equals("OK")) {
             ArrayList<Carta> mesa = (ArrayList<Carta>) doServidor.readObject();
-            System.out.println("Mesa:");
+            System.out.println("Cartas na mesa:");
             System.out.println(mesa);
 
             jogador = (Jogador) doServidor.readObject();
 
             ArrayList<Carta> mao = jogador.getMao();
 
-            System.out.println("Suas cartas:");
+            System.out.println("Cartas na sua mão:");
             System.out.println(mao);
         }
 

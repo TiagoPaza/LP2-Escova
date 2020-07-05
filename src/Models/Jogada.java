@@ -63,4 +63,49 @@ public class Jogada implements Serializable {
     public void setCapturadas(ArrayList<Carta> capturadas) {
         this.capturadas = capturadas;
     }
+
+    public boolean efetuarJogada() {
+        if (cartasMesa.size() == 0) {
+            for (int i = 0; i < mao.size(); i++) {
+                if (mao.get(i).getId() == cartaMao.getId()) {
+                    mao.remove(i);
+                    break;
+                }
+            }
+            mesa.add(cartaMao);
+
+            return true;
+        }
+
+        int soma = cartaMao.getPontos();
+        for (Carta carta : cartasMesa) {
+            soma += carta.getPontos();
+        }
+
+        if (soma == 15) {
+
+            for (int i = 1; i <= mao.size(); i++) {
+                if (mao.get(i).getId() == cartaMao.getId()) {
+                    mao.remove(i);
+
+                    break;
+                }
+            }
+
+            for (int i = 1; i <= cartasMesa.size(); i++) {
+                for (int j = 0; j < mesa.size(); j++) {
+                    if (mesa.get(j).getId() == cartasMesa.get(i).getId()) {
+                        mesa.remove(j);
+                    }
+                }
+            }
+
+            capturadas.add(cartaMao);
+            capturadas.addAll(cartasMesa);
+
+            return true;
+        }
+
+        return false;
+    }
 }
