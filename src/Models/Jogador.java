@@ -103,4 +103,15 @@ public class Jogador implements Serializable {
     public void setAdversario(Jogador adversario) {
         this.adversario = adversario;
     }
+
+    public void insereNaPilha(ArrayList<Carta> cartas) {
+        for (Carta carta : cartas) {
+            pilha.add(carta);
+            if (carta.getNaipe() == "Ouros") {
+                this.setOuros(ouros + 1);
+                if (carta.getValor() == "7")
+                    this.seteBelo = true;
+            }
+        }
+    }
 }

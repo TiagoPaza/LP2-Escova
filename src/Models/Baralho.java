@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Baralho {
     private static final String[] naipes = {"Copas", "Espadas", "Ouros", "Paus"};
-    private static final String[] valores = {"As", "2", "3", "4", "5", "6", "7", "Q", "J", "K"};
+    private static final String[] valores = {"Ás", "2", "3", "4", "5", "6", "7", "Q", "J", "K"};
 
     private final ArrayList<Carta> cartas;
 

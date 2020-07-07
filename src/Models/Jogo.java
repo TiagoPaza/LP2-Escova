@@ -99,4 +99,8 @@ public class Jogo {
 	public boolean partidaAcabou() {
 		return this.getBaralho().getCartas().size() == 0;
 	}
+
+	public boolean rodadaAcabou() {
+		return jogador1.getMao().size() == 0 && jogador2.getMao().size() == 0;
+	}
 }

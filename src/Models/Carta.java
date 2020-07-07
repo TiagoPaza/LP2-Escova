@@ -12,6 +12,7 @@ public class Carta implements Serializable {
 
     public Carta(int id, String valor, String naipe, int pontos) {
         this.id = id;
+        this.valor = valor;
         this.naipe = naipe;
         this.pontos = pontos;
     }
@@ -50,5 +51,9 @@ public class Carta implements Serializable {
 
     public void setPontos(int pontos) {
         this.pontos = pontos;
+    }
+
+    public String toString() {
+        return "(" + getId() + ") " + getValor() + " de " + getNaipe();
     }
 }
