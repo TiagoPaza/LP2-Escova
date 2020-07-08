@@ -96,7 +96,7 @@ public class JogadorB {
 
                         jogou = true;
                     } else
-                        System.out.println("Models.Jogada inv�lida, pois n�o somou 15! Tente novamente.");
+                        System.out.println("Opaa! Houve um erro na sua jogada, você não somou 15! Tente novamente.");
                 } else {
                     do {
                         System.out.println("Digite o ID da carta a ser descartada:");
